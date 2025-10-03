@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma migrate deploy && next build --turbopack",
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "start:migrate:prod": "prisma migrate deploy && npm run start",
+    "start:migrate:prod": "prisma migrate deploy && pnpm run start",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
