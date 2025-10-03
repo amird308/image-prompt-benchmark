@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Trigger image generation process in the background
-    fetch(`${request.url}/${batch.id}/generate`, {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/batches/${batch.id}/generate`, {
       method: 'POST',
     });
     return NextResponse.json(batch, { status: 201 });

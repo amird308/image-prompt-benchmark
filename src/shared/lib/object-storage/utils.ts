@@ -37,6 +37,7 @@ export async function uploadFile(params: UploadFileParams): Promise<UploadFileRe
       location: `${s3Client.config.endpoint}/${params.bucket}/${params.key}`,
     };
   } catch (error) {
+    console.log(error)
     const objectStorageError: ObjectStorageError = new Error(
       `Failed to upload file: ${error instanceof Error ? error.message : 'Unknown error'}`
     );
