@@ -1,0 +1,46 @@
+- { "background": "base background color" }
+- { "foreground": "base text color" }
+- { "card": "card background color" }
+- { "card-foreground": "card text color" }
+- { "popover": "popover background color" }
+- { "popover-foreground": "popover text color" }
+- { "primary": "primary brand color" }
+- { "primary-foreground": "text on primary" }
+- { "secondary": "secondary background color" }
+- { "secondary-foreground": "text on secondary" }
+- { "muted": "muted background color" }
+- { "muted-foreground": "muted text color" }
+- { "accent": "accent background color" }
+- { "accent-foreground": "accent text color" }
+- { "destructive": "error or danger color" }
+- { "destructive-foreground": "text on destructive" }
+- { "border": "default border color" }
+- { "input": "input background/border color" }
+- { "ring": "focus ring color" }
+- { "chart-1": "chart series 1 color" }
+- { "chart-2": "chart series 2 color" }
+- { "chart-3": "chart series 3 color" }
+- { "chart-4": "chart series 4 color" }
+- { "chart-5": "chart series 5 color" }
+- { "sidebar": "sidebar background color" }
+- { "sidebar-foreground": "sidebar text color" }
+- { "sidebar-primary": "sidebar primary color" }
+- { "sidebar-primary-foreground": "text on sidebar primary" }
+- { "sidebar-accent": "sidebar accent color" }
+- { "sidebar-accent-foreground": "text on sidebar accent" }
+- { "sidebar-border": "sidebar border color" }
+- { "sidebar-ring": "sidebar focus ring" }
+- { "font-sans": "sans-serif font family" }
+- { "font-serif": "serif font family" }
+- { "font-mono": "monospace font family" }
+- { "radius": "default border radius" }
+- { "shadow-2xs": "very small shadow" }
+- { "shadow-xs": "extra small shadow" }
+- { "shadow-sm": "small shadow" }
+- { "shadow": "default shadow" }
+- { "shadow-md": "medium shadow" }
+- { "shadow-lg": "large shadow" }
+- { "shadow-xl": "extra large shadow" }
+- { "shadow-2xl": "double extra large shadow" }
+- { "tracking-normal": "normal letter spacing" }
+- { "spacing": "base spacing unit" }
