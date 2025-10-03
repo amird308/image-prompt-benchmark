@@ -22,7 +22,7 @@ const s3ClientSingleton = ():AWS.S3 => {
     s3ForcePathStyle: true, // needed for MinIO
     signatureVersion: 'v4',
     apiVersion: 'v3',
-    sslEnabled: true,
+    sslEnabled: false,
   });
 
   return s3;
