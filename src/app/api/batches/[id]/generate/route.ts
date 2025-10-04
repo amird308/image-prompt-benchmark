@@ -31,22 +31,24 @@ export async function POST(
  
     const referenceImageKey = batch.referenceImages[0].storageKey;
 
-    for (const prompt of batch.prompts) {
-      for (let i = 0; i < batch.imageCountPerPrompt; i++) {
+    const generationTasks = batch.prompts.flatMap((prompt) =>
+      Array.from({ length: batch.imageCountPerPrompt }).map(async () => {
         const { url, storageKey } = await generateAndStoreImage(
           prompt.text,
           referenceImageKey
         );
 
-        await db.generatedImage.create({
+        return db.generatedImage.create({
           data: {
             url,
             storageKey,
             promptId: prompt.id,
           },
         });
-      }
-    }
+      })
+    );
+
+    await Promise.all(generationTasks);
 
     await db.batch.update({
       where: { id: id },
