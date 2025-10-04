@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
 import { Batch } from '@/shared/types/batch.types';
 import {
   Card,
@@ -14,7 +15,29 @@ interface BatchDetailsProps {
   onSelectBatch: () => void;
 }
 
-export function BatchDetails({ batch, onSelectBatch }: BatchDetailsProps) {
+export function BatchDetails({ batch: initialBatch, onSelectBatch }: BatchDetailsProps) {
+  const [batch, setBatch] = useState<Batch>(initialBatch);
+
+  const fetchBatchData = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/batches/${initialBatch.id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch batch details');
+      }
+      const data: Batch = await response.json();
+      setBatch(data);
+    } catch (error) {
+      console.error('Error fetching batch details:', error);
+    }
+  }, [initialBatch.id]); // Dependency on initialBatch.id
+
+  useEffect(() => {
+    fetchBatchData(); // Initial fetch
+
+    const intervalId = setInterval(fetchBatchData, 5000); // Fetch every 5 seconds
+
+    return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, [fetchBatchData]); // Dependency on fetchBatchData
 
   return (
     <Card>
