@@ -6,6 +6,7 @@ export interface GeneratedImage {
   storageKey: string;
   createdAt: string;
   promptId: string;
+  cost: number; // Added cost field
 }
 
 export interface Prompt {

@@ -125,7 +125,7 @@ export function BatchPromptRunner({ referenceImageKeys, initialPrompts }: BatchP
         <div className="space-y-2">
           <Label>Prompts</Label>
           {prompts.map((prompt, index) => (
-            <div key={`${prompt}-${index}`} className="flex items-center space-x-2">
+            <div key={`PROMPT-${index}`} className="flex items-center space-x-2">
               <Textarea
                 value={prompt}
                 onChange={(e) => handlePromptChange(index, e.target.value)}

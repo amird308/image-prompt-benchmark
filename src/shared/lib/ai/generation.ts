@@ -45,6 +45,8 @@ Mega Prompt: "${megaPrompt}"`;
       },
     }
   });
+  console.log(result?.usageMetadata?.promptTokensDetails);
+  console.log(result);
   const resultArray = JSON.parse(result.text as string) || '';
   try {
     if (Array.isArray(resultArray)) {
@@ -82,7 +84,6 @@ export async function generateAndStoreImage(
       },
     });
   }
-  console.log(parts);
   const result = await genAI.models.generateContent({
     model: "gemini-2.5-flash-image-preview",
     contents: parts,

@@ -26,8 +26,12 @@ export function BatchManagement() {
     fetchBatches();
   }, [fetchBatches]);
 
-  const handleSelectBatch = async (batchId: string) => {
-    console.log(batchId);
+  const handleBack = () => {
+    setSelectedBatch(null);
+  };
+
+
+  const handleSelectBatch = async (batchId: string | null) => {
     try {
       const response = await fetch(`/api/batches/${batchId}`);
       const data = await response.json();
@@ -43,7 +47,7 @@ export function BatchManagement() {
   }
 
   if (selectedBatch) {
-    return <BatchDetails batch={selectedBatch} />;
+    return <BatchDetails onSelectBatch={handleBack} batch={selectedBatch} />;
   }
 
   return <BatchList batches={batches} onSelectBatch={handleSelectBatch} refreshBatches={fetchBatches} />;
