@@ -20,9 +20,9 @@ const fileToPart = async (file: File): Promise<{ inlineData: { mimeType: string;
 
 
 export async function generatePrompts(megaPrompt: string, count: number, imageFile?: File): Promise<string[]> {
-  const promptContent = `Based on the following mega prompt, generate ${count} smaller, specific prompts for an image generation model. Return the prompts as a JSON array of strings.
-
-Mega Prompt: "${megaPrompt}"`;
+  const promptContent = `
+  ${megaPrompt}
+  `;
 
   let originalImagePart: { inlineData: { mimeType: string; data: string; } } | undefined;
   if (imageFile) {
@@ -40,17 +40,33 @@ Mega Prompt: "${megaPrompt}"`;
       responseSchema: {
         type: Type.ARRAY,
         items: {
-          type: Type.STRING,
+          type: Type.OBJECT,
+          properties: {
+            "id": {type: Type.NUMBER},
+            "concept": {type: Type.STRING},
+            "visual_setup": {type: Type.STRING},
+            "why_channel": {type: Type.STRING},
+            "prompt_for_image_generation": {type: Type.STRING},
+            "negative_prompts": {
+              type: Type.ARRAY,
+              items: { type: Type.STRING },
+            },
+          },
+          required: ["prompt_for_image_generation", "negative_prompts", "why_channel", "visual_setup", "concept", "id"]
         },
       },
     }
   });
-  console.log(result?.usageMetadata?.promptTokensDetails);
-  console.log(result);
   const resultArray = JSON.parse(result.text as string) || '';
   try {
     if (Array.isArray(resultArray)) {
-      return resultArray;
+      const results = resultArray.map((prompt) => {
+        return JSON.stringify({
+          prompt_for_image_generation: prompt.prompt_for_image_generation,
+          negative_prompts: prompt.negative_prompts,
+        })
+      })
+      return results
     }
   } catch (error) {
     console.error("Failed to parse prompts from AI response:", error);
