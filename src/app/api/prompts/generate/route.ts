@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
       Number(count) || 5,
       file
     );
-    console.log(prompts);
     return NextResponse.json({ prompts });
   } catch (error) {
     console.error(error);
