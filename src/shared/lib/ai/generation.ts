@@ -101,15 +101,8 @@ export async function generateAndStoreImage(
     });
   }
   const result = await genAI.models.generateContent({
-    model: 'gemini-3-pro-image-preview',
+    model: "gemini-2.5-flash-image-preview",
     contents: parts,
-    config: {
-      // @ts-ignore
-      imageConfig: {
-        imageSize: '2K',
-      },
-      tools: [{ googleSearch: {} }],
-    },
   });
 
   const imagePartFromResponse = result.candidates?.[0]?.content?.parts?.find(part => part.inlineData);
